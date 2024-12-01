@@ -1,0 +1,3 @@
+[submodule "opt/rigit"]
+	path = opt/rigit
+	url = https://github.com/Rigit-io/rigit-ide
