@@ -1,0 +1,11 @@
+Package: rigit
+Version: 0.0.1
+Section: utils
+Priority: optional
+Architecture: all
+Essential: no
+Installed-Size: 1024
+Maintainer: Sanjana Kumari <sanjana@virtuslabs.in>
+Description: IDE for Robots
+    IDE for Robots.
+Depends: python3, desktop-file-utils, hicolor-icon-theme

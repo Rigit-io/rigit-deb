@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e
+
+# Clean up virtual environment
+rm -rf /opt/rigit/myenv
+
+# Remove launcher script
+rm -f /usr/local/bin/rigit

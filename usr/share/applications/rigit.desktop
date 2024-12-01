@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=0.1
+Name=Rigit
+Comment=Rigit IDE
+Exec=rigit
+Icon=rigit
+Terminal=false
+Type=Application
+Categories=Development;IDE;
+StartupWMClass=Tk

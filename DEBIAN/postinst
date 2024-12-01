@@ -1,0 +1,39 @@
+#!/bin/bash
+set -e
+
+# Create virtual environment
+python3 -m venv /opt/rigit/myenv
+
+# Activate virtual environment and install requirements
+/opt/rigit/myenv/bin/pip install -r /opt/rigit/requirements.txt
+
+# Install icons in multiple sizes
+install -D -m 644 /opt/rigit/icons/rigit-logo.png /usr/share/icons/hicolor/256x256/apps/rigit.png
+install -D -m 644 /opt/rigit/icons/rigit-logo.png /usr/share/icons/hicolor/128x128/apps/rigit.png
+install -D -m 644 /opt/rigit/icons/rigit-logo.png /usr/share/icons/hicolor/64x64/apps/rigit.png
+install -D -m 644 /opt/rigit/icons/rigit-logo.png /usr/share/icons/hicolor/48x48/apps/rigit.png
+install -D -m 644 /opt/rigit/icons/rigit-logo.png /usr/share/icons/hicolor/32x32/apps/rigit.png
+install -D -m 644 /opt/rigit/icons/rigit-logo.png /usr/share/icons/hicolor/24x24/apps/rigit.png
+install -D -m 644 /opt/rigit/icons/rigit-logo.png /usr/share/icons/hicolor/22x22/apps/rigit.png
+install -D -m 644 /opt/rigit/icons/rigit-logo.png /usr/share/icons/hicolor/16x16/apps/rigit.png
+install -D -m 644 /opt/rigit/icons/rigit-logo.png /usr/share/icons/hicolor/8x8/apps/rigit.png
+
+# Update icon caches more thoroughly
+gtk-update-icon-cache -f -t /usr/share/icons/hicolor
+update-icon-caches /usr/share/icons/*
+update-desktop-database -q
+xdg-desktop-menu forceupdate
+
+# Add these lines:
+if command -v gnome-shell &> /dev/null; then
+    gnome-shell --replace &
+fi
+
+# Create launcher script
+cat > /usr/local/bin/rigit << 'EOL'
+#!/bin/bash
+source /opt/rigit/myenv/bin/activate
+python /opt/rigit/rigit_ide.py --ros iron "$@"
+EOL
+
+chmod +x /usr/local/bin/rigit
